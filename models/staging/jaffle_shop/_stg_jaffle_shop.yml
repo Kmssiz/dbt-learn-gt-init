@@ -2,21 +2,25 @@ models:
   - name: stg_jaffle_shop_customers
     columns:
       - name: customer_id
+        description: "Unique identifier for each customer"
         data_tests:
           - not_null
           - unique
   - name: stg_jaffle_shop__orders
     columns:
       - name: order_id
+        description: "Unique identifier for each order"
         tests:
           - not_null
           - unique
       - name: status
+        description: '{{ doc("order_status") }}'
         data_tests:
           - accepted_values:
               arguments:
                 values: ['completed', 'shipped', 'returned','placed','return_pending']
       - name: customer_id
+        description: "Identifier for the customer who placed the order"
         data_tests:
           - relationships:
               arguments:
